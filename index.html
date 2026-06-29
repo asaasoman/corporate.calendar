@@ -2603,11 +2603,21 @@ textarea.form-control { resize: vertical; min-height: 80px; line-height: 1.6; }
   font-family: inherit; font-size: 13px; font-weight: 600;
   color: var(--text-soft); cursor: pointer;
   transition: all .15s; white-space: nowrap;
+  position: relative;
 }
 .wc-tab:hover { color: var(--text); }
 .wc-tab.active {
   background: var(--card); color: var(--green-dark);
+  font-size: 13.5px; font-weight: 800;
   box-shadow: var(--shadow-sm);
+}
+.wc-tab.active::after {
+  content: "";
+  position: absolute; bottom: 3px; left: 50%;
+  width: 20px; height: 3px;
+  border-radius: 99px;
+  background: var(--gold);
+  transform: translateX(-50%);
 }
 
 .wc-register {
@@ -3277,20 +3287,30 @@ textarea.form-control { resize: vertical; min-height: 80px; line-height: 1.6; }
 }
 .wc-admin-edit-exit:hover { background: #264d31; }
 
-/* ─── Live running-total bar (predict tab) ───────────────────────── */
+/* ─── Live running-total — achievement card (predict tab) ───────── */
 .wc-live-total {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px;
-  background: var(--green-tint); border: 1px solid var(--green-light);
-  border-radius: 10px; padding: 10px 16px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 13px;
+  background: linear-gradient(135deg, var(--gold-tint) 0%, var(--card) 100%);
+  border: 1.5px solid var(--gold-soft);
+  border-radius: var(--radius); padding: 12px 16px; margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
 }
+.wc-live-total-ico {
+  width: 42px; height: 42px; flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 3px 9px rgba(0,0,0,.14), inset 0 -2px 5px rgba(0,0,0,.1);
+}
+.wc-live-total-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .wc-live-total-label {
-  font-size: 12.5px; font-weight: 600; color: var(--green-dark);
+  font-size: 11.5px; font-weight: 700; color: var(--clay);
 }
 .wc-live-total-value {
   font-family: 'Co Headline', 'Tajawal', sans-serif;
-  font-size: 19px; font-weight: 700; color: var(--green-dark);
-  font-variant-numeric: tabular-nums;
+  font-size: 22px; font-weight: 800; color: var(--green-dark);
+  font-variant-numeric: tabular-nums; line-height: 1.2;
 }
 
 
@@ -4689,9 +4709,9 @@ html.view-wc.wc-dark .wc-cs-leading {
 .wc-big-countdown::before {
   content: "";
   position: absolute;
-  top: -40%; inset-inline-start: -10%;
-  width: 220px; height: 220px;
-  background: radial-gradient(circle, rgba(255,253,248,.12) 0%, transparent 65%);
+  top: -60%; inset-inline-start: -12%;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(255,253,248,.09) 0%, transparent 70%);
   pointer-events: none;
 }
 .wc-bcd-left {
@@ -4729,7 +4749,8 @@ html.view-wc.wc-dark .wc-cs-leading {
   align-items: center;
   min-width: 56px;
   padding: 7px 8px 6px;
-  background: rgba(255,253,248,.16);
+  background: rgba(255,253,248,.20);
+  border: 1px solid rgba(255,253,248,.16);
   border-radius: 10px;
 }
 .wc-bcd-num {
@@ -4739,6 +4760,7 @@ html.view-wc.wc-dark .wc-cs-leading {
   font-variant-numeric: tabular-nums;
   line-height: 1;
   letter-spacing: 1px;
+  text-shadow: 0 1px 4px rgba(0,0,0,.25);
 }
 .wc-bcd-lbl {
   font-size: 9.5px;
@@ -5084,8 +5106,8 @@ html[lang="en"] .wc-podium-spot.me::after { content: "YOU"; }
   background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
   color: #FFFDF8;
   border-radius: var(--radius-lg, 18px);
-  padding: 18px 20px;
-  margin-bottom: 16px;
+  padding: 15px 18px;
+  margin-bottom: 10px;
   box-shadow: 0 6px 20px rgba(49,92,59,.22);
   position: relative;
   overflow: hidden;
@@ -5093,9 +5115,9 @@ html[lang="en"] .wc-podium-spot.me::after { content: "YOU"; }
 .wc-opportunity::before {
   content: "";
   position: absolute;
-  top: -50%; inset-inline-end: -8%;
-  width: 240px; height: 240px;
-  background: radial-gradient(circle, rgba(255,253,248,.14) 0%, transparent 65%);
+  top: -65%; inset-inline-end: -15%;
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(255,253,248,.10) 0%, transparent 70%);
   pointer-events: none;
 }
 .wc-opportunity.waiting,
@@ -5108,11 +5130,11 @@ html[lang="en"] .wc-podium-spot.me::after { content: "YOU"; }
 .wc-oc-top {
   display: flex; align-items: center; gap: 12px;
   position: relative; z-index: 1;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .wc-oc-ico {
-  font-size: 26px; line-height: 1;
-  width: 44px; height: 44px;
+  font-size: 24px; line-height: 1;
+  width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(255,253,248,.16);
   border-radius: 12px;
@@ -5125,7 +5147,7 @@ html[lang="en"] .wc-podium-spot.me::after { content: "YOU"; }
 }
 .wc-oc-title {
   font-family: 'Co Headline', 'Tajawal', sans-serif;
-  font-size: 18px; font-weight: 700; line-height: 1.3;
+  font-size: 17px; font-weight: 700; line-height: 1.3;
 }
 .wc-oc-check {
   width: 30px; height: 30px; border-radius: 50%;
@@ -5137,52 +5159,38 @@ html[lang="en"] .wc-podium-spot.me::after { content: "YOU"; }
   position: relative; z-index: 1;
   font-size: 13px; opacity: .92; line-height: 1.6;
 }
-.wc-oc-stats {
+/* Compact status chips — replace the old stretched stat rows + progress bar */
+.wc-oc-chips {
   position: relative; z-index: 1;
-  display: flex; flex-wrap: wrap; gap: 8px 18px;
-  margin-bottom: 14px;
+  display: flex; flex-wrap: wrap; gap: 7px;
+  margin-bottom: 12px;
 }
-.wc-oc-stat {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 13px; font-weight: 600;
+.wc-oc-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,253,248,.16);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px; font-weight: 700;
+  white-space: nowrap;
 }
-.wc-oc-stat-ico { font-size: 15px; line-height: 1; }
-.wc-oc-progress {
-  position: relative; z-index: 1;
-  margin-bottom: 14px;
-}
-.wc-oc-progress-track {
-  height: 8px; border-radius: 99px;
-  background: rgba(255,253,248,.22);
-  overflow: hidden;
-}
-.wc-oc-progress-fill {
-  height: 100%; border-radius: 99px;
-  background: #FFFDF8;
-  transition: width .3s ease;
-}
-.wc-oc-progress-label {
-  margin-top: 6px;
-  font-size: 11.5px; opacity: .85;
-  font-variant-numeric: tabular-nums;
-}
+.wc-oc-chip .ico { font-size: 13px; line-height: 1; }
+.wc-oc-chip.ok { background: rgba(255,253,248,.26); }
 .wc-oc-btn {
   position: relative; z-index: 1;
-  display: inline-flex; align-items: center; gap: 8px;
+  display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px;
   background: #FFFDF8; color: var(--green-dark);
-  border: 0; border-radius: 99px;
-  padding: 10px 22px;
+  border: 0; border-radius: 999px;
+  padding: 12px 22px;
   font-family: 'Co Headline', 'Tajawal', sans-serif;
-  font-size: 14px; font-weight: 700;
+  font-size: 14.5px; font-weight: 700;
   cursor: pointer; transition: all .15s;
   box-shadow: 0 3px 10px rgba(0,0,0,.12);
 }
 .wc-oc-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(0,0,0,.18); }
 @media (max-width: 560px) {
-  .wc-opportunity { padding: 15px 16px; }
-  .wc-oc-title { font-size: 16px; }
-  .wc-oc-stat { font-size: 12px; }
-  .wc-oc-btn { width: 100%; justify-content: center; }
+  .wc-opportunity { padding: 13px 14px; }
+  .wc-oc-title { font-size: 15.5px; }
+  .wc-oc-chip { font-size: 11px; padding: 5px 10px; }
 }
 
 /* ─── Per-stage visual progress rows (replaces plain submit-helper text) ─── */
@@ -5774,7 +5782,7 @@ html[lang="en"] .wc-podium-spot.me::after { content: "YOU"; }
           <span data-i18n="wc.launcher.eyebrow">FIFA WORLD CUP · 2026</span>
         </div>
         <div class="wc-hero-title" data-i18n="wc.title">تحدّي توقعات كأس العالم 2026</div>
-        <div class="wc-hero-sub" data-i18n="wc.subtitle">شارك في التحدّي — توقّع المتأهلين، تابع ترتيبك في القائمة العامة</div>
+        <div class="wc-hero-sub" data-i18n="wc.subtitle">توقع نتائج المباريات، اجمع النقاط، وتابع ترتيبك بين المشاركين</div>
       </div>
     </div>
 
@@ -5795,7 +5803,7 @@ html[lang="en"] .wc-podium-spot.me::after { content: "YOU"; }
           <span class="wc-title-ico">⚽</span>
           <span data-i18n="wc.title">تحدّي توقعات كأس العالم 2026</span>
         </div>
-        <div class="wc-subtitle" data-i18n="wc.subtitle">شارك في التحدّي — توقّع المتأهلين، تابع ترتيبك في القائمة العامة</div>
+        <div class="wc-subtitle" data-i18n="wc.subtitle">توقع نتائج المباريات، اجمع النقاط، وتابع ترتيبك بين المشاركين</div>
       </div>
       <div id="wcUserSlot"></div>
     </div>
@@ -6077,7 +6085,7 @@ const I18N = {
 
     // ── WC section ─────────────────────────────────────────────
     'wc.title':               'تحدّي توقعات كأس العالم 2026',
-    'wc.subtitle':            'شارك في التحدّي — توقّع المتأهلين، تابع ترتيبك في القائمة العامة',
+    'wc.subtitle':            'توقع نتائج المباريات، اجمع النقاط، وتابع ترتيبك بين المشاركين',
     'wc.tab.predict':         '🎯 توقعاتي',
     'wc.tab.leaderboard':     '🏆 المتصدّرون',
     'wc.tab.admin':           '⚙ إدارة النتائج',
@@ -6383,7 +6391,7 @@ const I18N = {
     'wc.theme.toDark':        'Switch to dark mode',
 
     'wc.title':               'FIFA World Cup 2026 Prediction Challenge',
-    'wc.subtitle':            'Join the challenge — predict qualifiers and track your rank on the global leaderboard',
+    'wc.subtitle':            'Predict match results, earn points, and track your rank among participants',
     'wc.tab.predict':         '🎯 My Predictions',
     'wc.tab.leaderboard':     '🏆 Leaderboard',
     'wc.tab.admin':           '⚙ Manage Results',
@@ -11475,9 +11483,9 @@ function wcGroupsNotice() {
       <div class="wc-notice warn">
         <div class="wc-notice-ico">⏰</div>
         <div class="wc-notice-body">
-          <div class="wc-notice-title">تنبيه: موعد إغلاق توقعات دور المجموعات</div>
+          <div class="wc-notice-title">تنبيه: إغلاق توقعات دور المجموعات قريبًا</div>
           <div class="wc-notice-text">
-            تُغلق إمكانية إرسال أو تعديل توقعات دور المجموعات تلقائياً <strong>عند انطلاق أول مباراة في البطولة</strong> (المكسيك × جنوب أفريقيا). تأكّد من حفظ توقعاتك قبل هذا الموعد — لن يُمكن التعديل بعدها.
+            تُغلق توقعات دور المجموعات تلقائيًا <strong>عند انطلاق أول مباراة</strong> (المكسيك × جنوب أفريقيا). احفظ توقعاتك قبل هذا الموعد.
           </div>
           <div class="wc-notice-deadline">📅 ${muscatTime} (${utcTime})</div>
         </div>
@@ -11489,7 +11497,7 @@ function wcGroupsNotice() {
         <div class="wc-notice-body">
           <div class="wc-notice-title">تم إغلاق توقعات دور المجموعات</div>
           <div class="wc-notice-text">
-            انتهى وقت إرسال توقعات دور المجموعات مع انطلاق أول مباراة في البطولة. التوقعات المحفوظة قبل هذا الوقت ثابتة. تابع باقي الأدوار الإقصائية في الأسفل وستفتح توقعاتها قبل بداية كل دور.
+            تم حفظ توقعاتك، ويمكنك الآن متابعة توقعات الأدوار الإقصائية.
           </div>
           <div class="wc-notice-deadline">⏱ أُغلق في: ${muscatTime}</div>
         </div>
@@ -12141,6 +12149,8 @@ function wcRenderOpportunityCard() {
       </div>`;
   }
 
+  const stageName = wcEsc(t('wc.stage.' + stage.id));
+
   // Round is open, but the admin hasn't entered its matchups yet.
   if (stage.id !== 'groups') {
     const matches = (wcState.results.knockout && wcState.results.knockout[stage.id]) || [];
@@ -12152,7 +12162,7 @@ function wcRenderOpportunityCard() {
             <div class="wc-oc-ico">${stage.icon}</div>
             <div class="wc-oc-head">
               <div class="wc-oc-eyebrow">${isEn ? 'Open now' : 'مفتوح الآن'}</div>
-              <div class="wc-oc-title">${isEn ? `${t('wc.stage.' + stage.id)} round` : `دور ${wcEsc(t('wc.stage.' + stage.id))}`}</div>
+              <div class="wc-oc-title">${stageName}</div>
             </div>
           </div>
           <div class="wc-oc-sub">${wcEsc(t('wc.empty.matchups'))}</div>
@@ -12165,40 +12175,32 @@ function wcRenderOpportunityCard() {
   const remainMs = wcStageEffectiveCloseTime(stage) - wcState.now;
   const remainStr = wcFormatRemaining(remainMs);
   const unit = stage.id === 'groups' ? (isEn ? 'groups' : 'مجموعة') : (isEn ? 'matches' : 'مباريات');
-  const pct = progress.total > 0 ? Math.round(progress.completed * 100 / progress.total) : 100;
   const allDone = remaining === 0;
+
+  const statusChip = allDone
+    ? `<span class="wc-oc-chip ok"><span class="ico">✅</span>${isEn ? 'Complete' : 'مكتملة'}</span>`
+    : `<span class="wc-oc-chip"><span class="ico">🟢</span>${isEn ? 'Open now' : 'مفتوحة الآن'}</span>`;
+  const timeChip = `<span class="wc-oc-chip"><span class="ico">⏰</span>${isEn ? `Closes in ${remainStr}` : `متبقي: ${remainStr}`}</span>`;
+  const countChip = `<span class="wc-oc-chip"><span class="ico">⚽</span>${isEn ? `${progress.completed}/${progress.total} ${unit}` : `أكملت ${progress.completed} من ${progress.total} ${unit}`}</span>`;
+
+  const ctaLabel = isEn
+    ? `⚽ Predict the ${stageName} matches`
+    : `⚽ توقع مباريات ${stageName} الآن`;
 
   return `
     <div class="wc-opportunity ${allDone ? 'done' : ''}" id="wcOpportunityCard">
       <div class="wc-oc-top">
         <div class="wc-oc-ico">${stage.icon}</div>
         <div class="wc-oc-head">
-          <div class="wc-oc-eyebrow">${isEn ? 'Open now' : 'الدور مفتوح الآن'}</div>
-          <div class="wc-oc-title">${isEn ? `${t('wc.stage.' + stage.id)} round` : `دور ${wcEsc(t('wc.stage.' + stage.id))}`}</div>
+          <div class="wc-oc-eyebrow">${isEn ? 'Current round' : 'الدور الحالي'}</div>
+          <div class="wc-oc-title">${stageName}</div>
         </div>
         ${allDone ? `<div class="wc-oc-check">✓</div>` : ''}
       </div>
-      <div class="wc-oc-stats">
-        <div class="wc-oc-stat">
-          <span class="wc-oc-stat-ico">⏰</span>
-          <span class="wc-oc-stat-text">${isEn ? `Closes in ${remainStr}` : `المتبقي للإغلاق: ${remainStr}`}</span>
-        </div>
-        <div class="wc-oc-stat">
-          <span class="wc-oc-stat-ico">⚽</span>
-          <span class="wc-oc-stat-text">${
-            allDone
-              ? (isEn ? 'All your predictions are in!' : 'كل توقعاتك جاهزة!')
-              : (isEn
-                  ? `${remaining} ${unit} still unpredicted`
-                  : `عدد ${stage.id === 'groups' ? 'المجموعات' : 'المباريات'} غير المتوقعة: ${remaining} ${unit}`)
-          }</span>
-        </div>
-      </div>
-      <div class="wc-oc-progress">
-        <div class="wc-oc-progress-track"><div class="wc-oc-progress-fill" style="width:${pct}%"></div></div>
-        <div class="wc-oc-progress-label">${progress.completed} / ${progress.total} ${unit}</div>
-      </div>
-      ${allDone ? '' : `<button type="button" class="wc-oc-btn" onclick="wcScrollToStage('${stage.id}')">🎯 ${isEn ? 'Complete your predictions' : 'كمّل توقعاتك'}</button>`}
+      <div class="wc-oc-chips">${statusChip}${timeChip}${countChip}</div>
+      ${allDone
+        ? `<div class="wc-oc-sub">${isEn ? 'All set — your picks are saved. You can still edit them before the deadline.' : 'جاهز؟ توقعاتك محفوظة ويمكنك تعديلها قبل الإغلاق'}</div>`
+        : `<button type="button" class="wc-oc-btn" onclick="wcScrollToStage('${stage.id}')">${ctaLabel}</button>`}
     </div>`;
 }
 
@@ -12237,8 +12239,11 @@ function wcRenderPredict() {
   const liveTotalLabel = (CURRENT_LANG === 'en') ? 'Current total' : 'الإجمالي الحالي';
   const liveTotalBar = `
     <div class="wc-live-total" id="wcLiveTotalBadge">
-      <span class="wc-live-total-label">🧮 ${liveTotalLabel}</span>
-      <span class="wc-live-total-value">${liveTotalPts} ${t('wc.lb.point')}</span>
+      <div class="wc-live-total-ico">🏆</div>
+      <div class="wc-live-total-body">
+        <span class="wc-live-total-label">${liveTotalLabel}</span>
+        <span class="wc-live-total-value">${liveTotalPts} ${t('wc.lb.point')}</span>
+      </div>
     </div>`;
 
   const adminBanner = adminEdit ? `
@@ -12332,7 +12337,7 @@ function wcRenderPredict() {
       </div>`;
   }
 
-  return adminBanner + wcRenderOpportunityCard() + liveTotalBar + wcRenderCurrentStageBadge() + wcGroupsNotice() + wcRenderBigCountdown() + stageCards + submitRow;
+  return adminBanner + wcRenderOpportunityCard() + liveTotalBar + wcGroupsNotice() + wcRenderBigCountdown() + stageCards + submitRow;
 }
 
 function wcRenderStageOverview() {
